@@ -9,9 +9,26 @@ GPIOx_t     *   const GPIOB         = (GPIOx_t      *)  0x48000400;
 GPIOx_t     *   const GPIOC         = (GPIOx_t      *)  0x48000800;
 GPTIMx_t    *   const TIM2          = (GPTIMx_t     *)  0x40000000;
 
+void wait_ms(int time){
+    for(int i = 0; i < time; i++){
+        for(int j = 0; j < 1600; j++);
+    }
+}
+
+void blink(){
+    GPIOA->GPIOx_ODR ^= (1 << 4);
+    wait_ms(100);
+}
 int main(void){
    
-
+    /** Enable GPIOA **/
     RCC->RCC_AHB2ENR |= (1 << 0);
-    for(;;);
+
+    /** Configure GPIOA **/
+    GPIOA->GPIOx_MODER &= ~(3 << (4 * 2));
+    GPIOA->GPIOx_MODER |=  (1 << (4 * 2));
+
+    for(;;){
+        blink();
+    }
 } 
