@@ -90,7 +90,23 @@ typedef struct GPTIMx_t{
     volatile uint32_t res8;
 }GPTIMx_t;
 
-typedef struct SYSCFG_t{}SYSCFG_t;
+typedef struct BTIMx_t{
+    volatile uint32_t TIMx_CR1;
+    volatile uint32_t TIMx_CR2;
+    volatile uint32_t res1;
+    volatile uint32_t TIMx_DIER;
+    
+    volatile uint32_t TIMx_SR;
+    volatile uint32_t TIMx_EGR;
+    volatile uint32_t res2;
+    volatile uint32_t res3;
+    
+    volatile uint32_t res4;
+    volatile uint32_t TIMx_CNT;
+    volatile uint32_t TIMx_PSC;
+    volatile uint32_t TIMx_ARR;
+}BTIMx_t;
+
 
 typedef struct NVIC_t{
     volatile uint32_t ISER[8];
