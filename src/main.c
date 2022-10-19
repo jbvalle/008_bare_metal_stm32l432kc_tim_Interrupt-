@@ -17,6 +17,7 @@ void wait_ms(int time){
 
 void blink(){
     GPIOA->GPIOx_ODR ^= (1 << 4);
+    GPIOA->GPIOx_ODR ^= (1 << 8);
     wait_ms(100);
 }
 int main(void){
@@ -27,6 +28,9 @@ int main(void){
     /** Configure GPIOA **/
     GPIOA->GPIOx_MODER &= ~(3 << (4 * 2));
     GPIOA->GPIOx_MODER |=  (1 << (4 * 2));
+
+    GPIOA->GPIOx_MODER &= ~(3 << (8 * 2));
+    GPIOA->GPIOx_MODER |=  (1 << (8 * 2));
 
     for(;;){
         blink();
