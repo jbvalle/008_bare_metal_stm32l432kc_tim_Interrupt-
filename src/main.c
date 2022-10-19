@@ -17,7 +17,7 @@ void TIM2_handler(void){
     TIM2->TIMx_SR = 0;
 
     /** Toggle PA4 LED **/
-    GPIOA->GPIOx_ODR ^= (1 << 4);
+    GPIOB->GPIOx_ODR ^= (1 << 3);
 }
 
 int main(void){
@@ -25,21 +25,22 @@ int main(void){
     /*********************/
     /** Configure GPIOB **/
     /*********************/
-    /** Enable GPIOA **/
-    RCC->RCC_AHB2ENR |= (1 << 0);
+    /** Enable GPIOB **/
+    RCC->RCC_AHB2ENR |= (1 << 1);
 
     /** Set PB3 as OUTPUT **/
-    GPIOB->GPIOx_MODER &= ~(3 << (4 * 2));
-    GPIOB->GPIOx_MODER |=  (1 << (4 * 2));
-    GPIOB->GPIOx_ODR |= (1 << 4);
+    GPIOB->GPIOx_MODER &= ~(3 << (3 * 2));
+    GPIOB->GPIOx_MODER |=  (1 << (3 * 2));
+    GPIOB->GPIOx_ODR |= (1 << 3);
+
 
     /************************/
     /** TIM2 Configuration **/
     /************************/
     RCC->RCC_APB1ENR1 |= (1 << 0);
-    
+
     /** Set PRE and ARR **/
-    uint32_t toggle_frequency_TIM2 = 8;
+    uint32_t toggle_frequency_TIM2 = 16;
 
     TIM2->TIMx_PSC = 16000 - 1;
 
@@ -61,37 +62,45 @@ int main(void){
     TIM2->TIMx_DIER |= (1 << 1);
 
     /** Enable IRQ in NVIC **/
-    NVIC->ISER[0] |= (1 << (TIM2_IRQn & 32));
+    NVIC->ISER[0] |= (1 << (TIM2_IRQn % 32));
 
     /************************/
     /** TIM6 Configuration **/
     /************************/
+    
+    /*********************/
+    /** Configure GPIOA **/
+    /*********************/
+    /** Enable GPIOA **/
+    RCC->RCC_AHB2ENR |= (1 << 0);
+
+    /** Set PA4 as OUTPUT **/
+    GPIOA->GPIOx_MODER &= ~(3 << (4 * 2));
+    GPIOA->GPIOx_MODER |=  (1 << (4 * 2));
+    GPIOA->GPIOx_ODR |= (1 << 4);
+
 
     /** Enable TIM6 **/
-    //RCC->RCC_APB1ENR1 |= (1 << 1);
+    RCC->RCC_APB1ENR1 |= (1 << 4);
 
     /** Set PRE and ARR **/
-    //uint32_t toggle_frequency_TIM6 = 2;
+    uint32_t toggle_frequency_TIM6 = 4;
 
-    //TIM6->TIMx_PSC = 16000 - 1;
+    TIM6->TIMx_PSC = 16000 - 1;
 
-    //TIM6->TIMx_ARR = (HSI_FREQ / (toggle_frequency_TIM6 * TIM6->TIMx_PSC)) - 1;
+    TIM6->TIMx_ARR = (HSI_FREQ / (toggle_frequency_TIM6 * TIM6->TIMx_PSC)) - 1;
 
     /** Reset TIM6 CNT **/
-    //TIM6->TIMx_CNT = 0;
+    TIM6->TIMx_CNT = 0;
 
     /** Start Counter **/
-    //TIM6->TIMx_CR1 |= 1;
+    TIM6->TIMx_CR1 |= 1;
 
     for(;;){
-
-        /** Loop Until Overflow has been reached **/ 
+        /** Loop Until Overflow **/
         while(!(TIM6->TIMx_SR & 1));
-
-        /** Reset Overflow Flag **/
-        TIM6->TIMx_SR &= ~1;
-
-        /** Toggle PB3 upon overflow **/
-        GPIOB->GPIOx_ODR ^= (1 << 3);
+        /** Reset Overflow flag **/
+        TIM6->TIMx_SR = 0;
+        GPIOA->GPIOx_ODR ^= (1 << 4);
     }
 }
