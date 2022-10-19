@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdlib.h>
 #include "peripherals.h"
 
 #define HSI_FREQ 16000000
@@ -15,9 +16,9 @@ BTIMx_t     *   const TIM6           = (BTIMx_t      *)  0x40001000;
 void TIM2_handler(void){
     /** Reset CC Flags and Overflow Flag **/
     TIM2->TIMx_SR = 0;
-
     /** Toggle PA4 LED **/
     GPIOB->GPIOx_ODR ^= (1 << 3);
+
 }
 
 int main(void){
@@ -40,7 +41,7 @@ int main(void){
     RCC->RCC_APB1ENR1 |= (1 << 0);
 
     /** Set PRE and ARR **/
-    uint32_t toggle_frequency_TIM2 = 16;
+    uint32_t toggle_frequency_TIM2 = 1;
 
     TIM2->TIMx_PSC = 16000 - 1;
 
@@ -95,6 +96,7 @@ int main(void){
 
     /** Start Counter **/
     TIM6->TIMx_CR1 |= 1;
+
 
     for(;;){
         /** Loop Until Overflow **/
