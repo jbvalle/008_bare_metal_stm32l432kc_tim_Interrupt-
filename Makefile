@@ -60,6 +60,9 @@ debug: FORCE
 	openocd -f /usr/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/share/openocd/scripts/target/stm32l4x.cfg &
 	gdb-multiarch $(TARGET) -x $(SUP_DIR)/debug.gdb
 
+edit: FORCE
+	vim -S Session.vim
+
 clean: FORCE
 	rm -rf $(DEB_DIR) $(SRC_DIR)/$(OBJ_DIR)
 
