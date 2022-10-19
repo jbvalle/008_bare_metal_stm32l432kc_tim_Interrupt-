@@ -2,7 +2,7 @@
 ENTRY(Reset_handler)
 
 /** Top of Stack **/
-_estack = ORIGIN(SRAM) + LENGTH(SRAM);
+_estack = 0x20000000 + 64K;
 
 /** Define Memory **/
 MEMORY

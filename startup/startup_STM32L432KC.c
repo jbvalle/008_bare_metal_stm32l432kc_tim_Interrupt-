@@ -105,6 +105,7 @@ void I2C4_ER_handler                (void)__attribute__((weak, alias("Default_ha
 
 
 /** Vector table **/
+__attribute__ ((section(".isr_vector")))
 void (* const fpn_vector[])(void) = {
     (void (*)(void))(&_estack),
     Reset_handler,

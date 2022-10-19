@@ -51,16 +51,18 @@ mk_obj:
 mk_deb:
 	mkdir -p $(DEB_DIR)
 
-flash:
+flash: FORCE
 	openocd -f /usr/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/share/openocd/scripts/target/stm32l4x.cfg &
 	gdb-multiarch $(TARGET) -x $(SUP_DIR)/flash.gdb
 	pkill openocd
 
-debug:
+debug: FORCE
 	openocd -f /usr/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/share/openocd/scripts/target/stm32l4x.cfg &
 	gdb-multiarch $(TARGET) -x $(SUP_DIR)/debug.gdb
 
-clean:
+clean: FORCE
 	rm -rf $(DEB_DIR) $(SRC_DIR)/$(OBJ_DIR)
 
-.PHONY = mk_deb mk_obj  flash debug clean
+FORCE:
+
+.PHONY = mk_deb mk_obj  flash debug clean FORCE

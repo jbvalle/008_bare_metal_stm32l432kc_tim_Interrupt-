@@ -10,7 +10,7 @@ Linker script and memory map
 
 LOAD src/obj/main.o
 LOAD src/obj/startup_STM32L432KC.o
-                0x20010000                        _estack = (ORIGIN (SRAM) + LENGTH (SRAM))
+                0x20010000                        _estack = 0x20010000
 
 .isr_vector     0x08000000        0x0
                 0x08000000                        . = ALIGN (0x4)
