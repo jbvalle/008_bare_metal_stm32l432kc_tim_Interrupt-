@@ -117,4 +117,13 @@ typedef struct NVIC_t{
     volatile uint32_t IPR[8];
     volatile uint32_t STIR[8];
 }NVIC_t;
+
+extern NVIC_t      *   const NVIC;
+extern RCC_t       *   const RCC;
+extern GPIOx_t     *   const GPIOA;
+extern GPIOx_t     *   const GPIOB;
+extern GPIOx_t     *   const GPIOC;
+extern GPTIMx_t    *   const TIM2; 
+extern BTIMx_t     *   const TIM6;
+
 #endif

@@ -26,7 +26,7 @@ LD := $(wildcard $(SUP_DIR)/*.ld)
 ## Compiler Flags ##
 ####################
 MARCH = cortex-m4
-CFLAGS = -g -Wall -Wextra -mcpu=$(MARCH) -mthumb -I./inc
+CFLAGS = -g -Wall -Wextra -mcpu=$(MARCH) -mthumb -I./inc -O0
 LFLAGS  = -nostdlib -T $(LD) -Wl,-Map=$(DEB_DIR)/main.map
 
 #############
