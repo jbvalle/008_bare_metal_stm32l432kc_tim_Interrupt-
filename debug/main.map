@@ -1,0 +1,200 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00040000         xr
+SRAM             0x20000000         0x00010000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD src/obj/main.o
+LOAD src/obj/startup_STM32L432KC.o
+                0x20010000                        _estack = (ORIGIN (SRAM) + LENGTH (SRAM))
+
+.isr_vector     0x08000000        0x0
+                0x08000000                        . = ALIGN (0x4)
+ *(.isr_vector)
+                0x08000000                        . = ALIGN (0x4)
+
+.text           0x08000000      0x220
+                0x08000000                        . = ALIGN (0x4)
+ *(.text)
+ .text          0x08000000        0x8 src/obj/main.o
+                0x08000000                main
+ .text          0x08000008       0x8c src/obj/startup_STM32L432KC.o
+                0x08000008                CRS_handler
+                0x08000008                EXTI15_10_handler
+                0x08000008                USART1_handler
+                0x08000008                LPTIM2_handler
+                0x08000008                EXTI0_handler
+                0x08000008                DFSDM1_FLT1_handler
+                0x08000008                CAN1_RX1_handler
+                0x08000008                NMI_handler
+                0x08000008                DFSDM1_FLT0_handler
+                0x08000008                DMA2_CH5
+                0x08000008                RTC_ALARM_handler
+                0x08000008                QUADSPI_handler
+                0x08000008                TIM2_handler
+                0x08000008                USART2_handler
+                0x08000008                DMA2_CH2
+                0x08000008                DMA2_CH7_handler
+                0x08000008                SPI3_handler
+                0x08000008                TIM3_handler
+                0x08000008                WWDG_handler
+                0x08000008                LCD_handler
+                0x08000008                DMA2_CH6_handler
+                0x08000008                SPI2_handler
+                0x08000008                UsuageFault_handler
+                0x08000008                SVCall_handler
+                0x08000008                SAI1_handler
+                0x08000008                TIM1_TRG_COM_handler
+                0x08000008                UART4_handler
+                0x08000008                DebugMonitor_handler
+                0x08000008                DMA1_CH5_handler
+                0x08000008                I2C3_ER_handler
+                0x08000008                MemManage_handler
+                0x08000008                RTC_WKUP_handler
+                0x08000008                RNG_handler
+                0x08000008                HardFault_handler
+                0x08000008                FPU_handler
+                0x08000008                TSC_handler
+                0x08000008                I2C4_EV_handler
+                0x08000008                RCC_handler
+                0x08000008                Systick_handler
+                0x08000008                AES_handler
+                0x08000008                EXTI2_handler
+                0x08000008                DMA2_CH1
+                0x08000008                TIM7_handler
+                0x08000008                I2C1_ER_handler
+                0x08000008                DMA2_CH4
+                0x08000008                EXTI9_5__handler
+                0x08000008                I2C2_EV_handler
+                0x08000008                USB_FS_handler
+                0x08000008                RTC_TAMP_STAMP_CSS_LSE_handler
+                0x08000008                DMA1_CH6_handler
+                0x08000008                EXTI3_handler
+                0x08000008                DMA1_CH1_handler
+                0x08000008                FLASH_handler
+                0x08000008                I2C4_ER_handler
+                0x08000008                DMA1_CH7_handler
+                0x08000008                TIM1_UP_TIM16_handler
+                0x08000008                SWPMI1_handler
+                0x08000008                I2C2_ER_handler
+                0x08000008                LPTIM1_handler
+                0x08000008                DMA1_CH4_handler
+                0x08000008                EXTI4_handler
+                0x08000008                CAN1_TX_handler
+                0x08000008                DMA1_CH2_handler
+                0x08000008                TIM1_BRK_TIM15_handler
+                0x08000008                SDMMC1_handler
+                0x08000008                I2C1_EV_handler
+                0x08000008                CAN1_RX0_handler
+                0x08000008                SPI1_handler
+                0x08000008                DMA1_CH3_handler
+                0x08000008                PendSV_handler
+                0x08000008                COMP_handler
+                0x08000008                LPUART1_handler
+                0x08000008                EXTI1_handler
+                0x08000008                ADC1_2_handler
+                0x08000008                CAN1_SCE_handler
+                0x08000008                TIM6_DACUNDER_handler
+                0x08000008                I2C3_EV_handler
+                0x08000008                DMA2_CH3
+                0x08000008                PVD_PVM_handler
+                0x08000008                BusFault_handler
+                0x08000008                TIM1_CC_handler
+                0x08000008                USART3_handler
+                0x08000008                Default_handler
+                0x08000010                Reset_handler
+ *(.text.*)
+ *(.rodata)
+ .rodata        0x08000094      0x18c src/obj/startup_STM32L432KC.o
+                0x08000094                fpn_vector
+ *(.rodata.*)
+                0x08000220                        . = ALIGN (0x4)
+                0x08000220                        _etext = LOADADDR (.data)
+
+.glue_7         0x08000220        0x0
+ .glue_7        0x08000220        0x0 linker stubs
+
+.glue_7t        0x08000220        0x0
+ .glue_7t       0x08000220        0x0 linker stubs
+
+.vfp11_veneer   0x08000220        0x0
+ .vfp11_veneer  0x08000220        0x0 linker stubs
+
+.v4_bx          0x08000220        0x0
+ .v4_bx         0x08000220        0x0 linker stubs
+
+.iplt           0x08000220        0x0
+ .iplt          0x08000220        0x0 src/obj/startup_STM32L432KC.o
+
+.rel.dyn        0x08000220        0x0
+ .rel.iplt      0x08000220        0x0 src/obj/startup_STM32L432KC.o
+
+.data           0x20000000        0x0 load address 0x08000220
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _sdata = .
+ *(.data)
+ .data          0x20000000        0x0 src/obj/main.o
+ .data          0x20000000        0x0 src/obj/startup_STM32L432KC.o
+ *(.data.*)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _edata = .
+
+.igot.plt       0x20000000        0x0 load address 0x08000220
+ .igot.plt      0x20000000        0x0 src/obj/startup_STM32L432KC.o
+
+.bss            0x20000000        0x0 load address 0x08000220
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _sbss = .
+ *(.bss)
+ .bss           0x20000000        0x0 src/obj/main.o
+ .bss           0x20000000        0x0 src/obj/startup_STM32L432KC.o
+ *(.bss.*)
+ *(COMMON)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _ebss = .
+OUTPUT(debug/main.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000      0x1fe
+ .debug_info    0x00000000       0x83 src/obj/main.o
+ .debug_info    0x00000083      0x17b src/obj/startup_STM32L432KC.o
+
+.debug_abbrev   0x00000000      0x152
+ .debug_abbrev  0x00000000       0x45 src/obj/main.o
+ .debug_abbrev  0x00000045      0x10d src/obj/startup_STM32L432KC.o
+
+.debug_aranges  0x00000000       0x40
+ .debug_aranges
+                0x00000000       0x20 src/obj/main.o
+ .debug_aranges
+                0x00000020       0x20 src/obj/startup_STM32L432KC.o
+
+.debug_line     0x00000000      0x193
+ .debug_line    0x00000000       0x41 src/obj/main.o
+ .debug_line    0x00000041      0x152 src/obj/startup_STM32L432KC.o
+
+.debug_str      0x00000000      0x17c
+ .debug_str     0x00000000       0xf9 src/obj/main.o
+                                0x12d (size before relaxing)
+ .debug_str     0x000000f9       0x83 src/obj/startup_STM32L432KC.o
+                                0x1ae (size before relaxing)
+
+.comment        0x00000000       0x4c
+ .comment       0x00000000       0x4c src/obj/main.o
+                                 0x4d (size before relaxing)
+ .comment       0x0000004c       0x4d src/obj/startup_STM32L432KC.o
+
+.ARM.attributes
+                0x00000000       0x2e
+ .ARM.attributes
+                0x00000000       0x2e src/obj/main.o
+ .ARM.attributes
+                0x0000002e       0x2e src/obj/startup_STM32L432KC.o
+
+.debug_frame    0x00000000       0x74
+ .debug_frame   0x00000000       0x28 src/obj/main.o
+ .debug_frame   0x00000028       0x4c src/obj/startup_STM32L432KC.o

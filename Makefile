@@ -17,8 +17,8 @@ SUP_DIR = startup
 ###########
 SRC := $(wildcard $(SRC_DIR)/*.c)
 SRC += $(wildcard $(SUP_DIR)/*.c)
-OBJ := $(patsubst $(SRC_DIR)/%.c, $(SRC_DIR)/OBJ_DIR)/%.o, $(SRC))
-OBJ := $(patsubst $(SUP_DIR)/%.c, $(SRC_DIR)/OBJ_DIR)/%.o, $(OBJ))
+OBJ := $(patsubst $(SRC_DIR)/%.c, $(SRC_DIR)/$(OBJ_DIR)/%.o, $(SRC))
+OBJ := $(patsubst $(SUP_DIR)/%.c, $(SRC_DIR)/$(OBJ_DIR)/%.o, $(OBJ))
 
 LD := $(wildcard $(SUP_DIR)/*.ld)
 
@@ -34,7 +34,7 @@ LFLAGS  = -nostdlib -T $(LD) -Wl,-Map=$(DEB_DIR)/main.map
 #############
 TARGET = $(DEB_DIR)/main.elf
 
-all:
+all: $(OBJ) $(TARGET)
 
 $(SRC_DIR)/$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | mk_obj
 	$(CC) $(CFLAGS) -c -o $@ $^

@@ -31,7 +31,7 @@ SECTIONS
         . = ALIGN(4);
     }> FLASH
 
-    _etext = LOADADDR(.data)
+    _etext = LOADADDR(.data);
 
     .data :
     {
