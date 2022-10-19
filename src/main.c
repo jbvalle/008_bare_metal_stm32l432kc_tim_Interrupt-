@@ -32,6 +32,9 @@ int main(void){
     GPIOA->GPIOx_MODER &= ~(3 << (8 * 2));
     GPIOA->GPIOx_MODER |=  (1 << (8 * 2));
 
+    GPIOA->GPIOx_ODR |=  (1 << 4);
+    GPIOA->GPIOx_ODR &= ~(1 << 8);
+
     for(;;){
         blink();
     }

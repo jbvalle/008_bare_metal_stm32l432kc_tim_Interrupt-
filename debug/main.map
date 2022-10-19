@@ -19,131 +19,131 @@ LOAD src/obj/startup_STM32L432KC.o
                 0x08000000                fpn_vector
                 0x0800018c                        . = ALIGN (0x4)
 
-.text           0x0800018c      0x13c
+.text           0x0800018c      0x18c
                 0x0800018c                        . = ALIGN (0x4)
  *(.text)
- .text          0x0800018c       0x94 src/obj/main.o
+ .text          0x0800018c       0xe4 src/obj/main.o
                 0x0800018c                wait_ms
                 0x080001c8                blink
-                0x080001e6                main
- .text          0x08000220       0x8c src/obj/startup_STM32L432KC.o
-                0x08000220                CRS_handler
-                0x08000220                EXTI15_10_handler
-                0x08000220                USART1_handler
-                0x08000220                LPTIM2_handler
-                0x08000220                EXTI0_handler
-                0x08000220                DFSDM1_FLT1_handler
-                0x08000220                CAN1_RX1_handler
-                0x08000220                NMI_handler
-                0x08000220                DFSDM1_FLT0_handler
-                0x08000220                DMA2_CH5
-                0x08000220                RTC_ALARM_handler
-                0x08000220                QUADSPI_handler
-                0x08000220                TIM2_handler
-                0x08000220                USART2_handler
-                0x08000220                DMA2_CH2
-                0x08000220                DMA2_CH7_handler
-                0x08000220                SPI3_handler
-                0x08000220                TIM3_handler
-                0x08000220                WWDG_handler
-                0x08000220                LCD_handler
-                0x08000220                DMA2_CH6_handler
-                0x08000220                SPI2_handler
-                0x08000220                UsuageFault_handler
-                0x08000220                SVCall_handler
-                0x08000220                SAI1_handler
-                0x08000220                TIM1_TRG_COM_handler
-                0x08000220                UART4_handler
-                0x08000220                DebugMonitor_handler
-                0x08000220                DMA1_CH5_handler
-                0x08000220                I2C3_ER_handler
-                0x08000220                MemManage_handler
-                0x08000220                RTC_WKUP_handler
-                0x08000220                RNG_handler
-                0x08000220                HardFault_handler
-                0x08000220                FPU_handler
-                0x08000220                TSC_handler
-                0x08000220                I2C4_EV_handler
-                0x08000220                RCC_handler
-                0x08000220                Systick_handler
-                0x08000220                AES_handler
-                0x08000220                EXTI2_handler
-                0x08000220                DMA2_CH1
-                0x08000220                TIM7_handler
-                0x08000220                I2C1_ER_handler
-                0x08000220                DMA2_CH4
-                0x08000220                EXTI9_5__handler
-                0x08000220                I2C2_EV_handler
-                0x08000220                USB_FS_handler
-                0x08000220                RTC_TAMP_STAMP_CSS_LSE_handler
-                0x08000220                DMA1_CH6_handler
-                0x08000220                EXTI3_handler
-                0x08000220                DMA1_CH1_handler
-                0x08000220                FLASH_handler
-                0x08000220                I2C4_ER_handler
-                0x08000220                DMA1_CH7_handler
-                0x08000220                TIM1_UP_TIM16_handler
-                0x08000220                SWPMI1_handler
-                0x08000220                I2C2_ER_handler
-                0x08000220                LPTIM1_handler
-                0x08000220                DMA1_CH4_handler
-                0x08000220                EXTI4_handler
-                0x08000220                CAN1_TX_handler
-                0x08000220                DMA1_CH2_handler
-                0x08000220                TIM1_BRK_TIM15_handler
-                0x08000220                SDMMC1_handler
-                0x08000220                I2C1_EV_handler
-                0x08000220                CAN1_RX0_handler
-                0x08000220                SPI1_handler
-                0x08000220                DMA1_CH3_handler
-                0x08000220                PendSV_handler
-                0x08000220                COMP_handler
-                0x08000220                LPUART1_handler
-                0x08000220                EXTI1_handler
-                0x08000220                ADC1_2_handler
-                0x08000220                CAN1_SCE_handler
-                0x08000220                TIM6_DACUNDER_handler
-                0x08000220                I2C3_EV_handler
-                0x08000220                DMA2_CH3
-                0x08000220                PVD_PVM_handler
-                0x08000220                BusFault_handler
-                0x08000220                TIM1_CC_handler
-                0x08000220                USART3_handler
-                0x08000220                Default_handler
-                0x08000228                Reset_handler
+                0x080001f6                main
+ .text          0x08000270       0x8c src/obj/startup_STM32L432KC.o
+                0x08000270                CRS_handler
+                0x08000270                EXTI15_10_handler
+                0x08000270                USART1_handler
+                0x08000270                LPTIM2_handler
+                0x08000270                EXTI0_handler
+                0x08000270                DFSDM1_FLT1_handler
+                0x08000270                CAN1_RX1_handler
+                0x08000270                NMI_handler
+                0x08000270                DFSDM1_FLT0_handler
+                0x08000270                DMA2_CH5
+                0x08000270                RTC_ALARM_handler
+                0x08000270                QUADSPI_handler
+                0x08000270                TIM2_handler
+                0x08000270                USART2_handler
+                0x08000270                DMA2_CH2
+                0x08000270                DMA2_CH7_handler
+                0x08000270                SPI3_handler
+                0x08000270                TIM3_handler
+                0x08000270                WWDG_handler
+                0x08000270                LCD_handler
+                0x08000270                DMA2_CH6_handler
+                0x08000270                SPI2_handler
+                0x08000270                UsuageFault_handler
+                0x08000270                SVCall_handler
+                0x08000270                SAI1_handler
+                0x08000270                TIM1_TRG_COM_handler
+                0x08000270                UART4_handler
+                0x08000270                DebugMonitor_handler
+                0x08000270                DMA1_CH5_handler
+                0x08000270                I2C3_ER_handler
+                0x08000270                MemManage_handler
+                0x08000270                RTC_WKUP_handler
+                0x08000270                RNG_handler
+                0x08000270                HardFault_handler
+                0x08000270                FPU_handler
+                0x08000270                TSC_handler
+                0x08000270                I2C4_EV_handler
+                0x08000270                RCC_handler
+                0x08000270                Systick_handler
+                0x08000270                AES_handler
+                0x08000270                EXTI2_handler
+                0x08000270                DMA2_CH1
+                0x08000270                TIM7_handler
+                0x08000270                I2C1_ER_handler
+                0x08000270                DMA2_CH4
+                0x08000270                EXTI9_5__handler
+                0x08000270                I2C2_EV_handler
+                0x08000270                USB_FS_handler
+                0x08000270                RTC_TAMP_STAMP_CSS_LSE_handler
+                0x08000270                DMA1_CH6_handler
+                0x08000270                EXTI3_handler
+                0x08000270                DMA1_CH1_handler
+                0x08000270                FLASH_handler
+                0x08000270                I2C4_ER_handler
+                0x08000270                DMA1_CH7_handler
+                0x08000270                TIM1_UP_TIM16_handler
+                0x08000270                SWPMI1_handler
+                0x08000270                I2C2_ER_handler
+                0x08000270                LPTIM1_handler
+                0x08000270                DMA1_CH4_handler
+                0x08000270                EXTI4_handler
+                0x08000270                CAN1_TX_handler
+                0x08000270                DMA1_CH2_handler
+                0x08000270                TIM1_BRK_TIM15_handler
+                0x08000270                SDMMC1_handler
+                0x08000270                I2C1_EV_handler
+                0x08000270                CAN1_RX0_handler
+                0x08000270                SPI1_handler
+                0x08000270                DMA1_CH3_handler
+                0x08000270                PendSV_handler
+                0x08000270                COMP_handler
+                0x08000270                LPUART1_handler
+                0x08000270                EXTI1_handler
+                0x08000270                ADC1_2_handler
+                0x08000270                CAN1_SCE_handler
+                0x08000270                TIM6_DACUNDER_handler
+                0x08000270                I2C3_EV_handler
+                0x08000270                DMA2_CH3
+                0x08000270                PVD_PVM_handler
+                0x08000270                BusFault_handler
+                0x08000270                TIM1_CC_handler
+                0x08000270                USART3_handler
+                0x08000270                Default_handler
+                0x08000278                Reset_handler
  *(.text.*)
  *(.rodata)
- .rodata        0x080002ac       0x1c src/obj/main.o
-                0x080002ac                NVIC
-                0x080002b0                SYSCFG
-                0x080002b4                RCC
-                0x080002b8                GPIOA
-                0x080002bc                GPIOB
-                0x080002c0                GPIOC
-                0x080002c4                TIM2
+ .rodata        0x080002fc       0x1c src/obj/main.o
+                0x080002fc                NVIC
+                0x08000300                SYSCFG
+                0x08000304                RCC
+                0x08000308                GPIOA
+                0x0800030c                GPIOB
+                0x08000310                GPIOC
+                0x08000314                TIM2
  *(.rodata.*)
-                0x080002c8                        . = ALIGN (0x4)
-                0x080002c8                        _etext = LOADADDR (.data)
+                0x08000318                        . = ALIGN (0x4)
+                0x08000318                        _etext = LOADADDR (.data)
 
-.glue_7         0x080002c8        0x0
- .glue_7        0x080002c8        0x0 linker stubs
+.glue_7         0x08000318        0x0
+ .glue_7        0x08000318        0x0 linker stubs
 
-.glue_7t        0x080002c8        0x0
- .glue_7t       0x080002c8        0x0 linker stubs
+.glue_7t        0x08000318        0x0
+ .glue_7t       0x08000318        0x0 linker stubs
 
-.vfp11_veneer   0x080002c8        0x0
- .vfp11_veneer  0x080002c8        0x0 linker stubs
+.vfp11_veneer   0x08000318        0x0
+ .vfp11_veneer  0x08000318        0x0 linker stubs
 
-.v4_bx          0x080002c8        0x0
- .v4_bx         0x080002c8        0x0 linker stubs
+.v4_bx          0x08000318        0x0
+ .v4_bx         0x08000318        0x0 linker stubs
 
-.iplt           0x080002c8        0x0
- .iplt          0x080002c8        0x0 src/obj/main.o
+.iplt           0x08000318        0x0
+ .iplt          0x08000318        0x0 src/obj/main.o
 
-.rel.dyn        0x080002c8        0x0
- .rel.iplt      0x080002c8        0x0 src/obj/main.o
+.rel.dyn        0x08000318        0x0
+ .rel.iplt      0x08000318        0x0 src/obj/main.o
 
-.data           0x20000000        0x0 load address 0x080002c8
+.data           0x20000000        0x0 load address 0x08000318
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -153,10 +153,10 @@ LOAD src/obj/startup_STM32L432KC.o
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _edata = .
 
-.igot.plt       0x20000000        0x0 load address 0x080002c8
+.igot.plt       0x20000000        0x0 load address 0x08000318
  .igot.plt      0x20000000        0x0 src/obj/main.o
 
-.bss            0x20000000        0x0 load address 0x080002c8
+.bss            0x20000000        0x0 load address 0x08000318
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sbss = .
  *(.bss)
@@ -183,9 +183,9 @@ LOAD linker stubs
  .debug_aranges
                 0x00000020       0x20 src/obj/startup_STM32L432KC.o
 
-.debug_line     0x00000000      0x282
- .debug_line    0x00000000      0x130 src/obj/main.o
- .debug_line    0x00000130      0x152 src/obj/startup_STM32L432KC.o
+.debug_line     0x00000000      0x2a0
+ .debug_line    0x00000000      0x14e src/obj/main.o
+ .debug_line    0x0000014e      0x152 src/obj/startup_STM32L432KC.o
 
 .debug_str      0x00000000      0x4d2
  .debug_str     0x00000000      0x45a src/obj/main.o
