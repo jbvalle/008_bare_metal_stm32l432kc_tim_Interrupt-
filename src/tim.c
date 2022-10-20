@@ -4,7 +4,7 @@
 #define HSI_FREQ 16000000
 #define TIM2_IRQn 28
 
-void _TIM2_interrupt_GPIO_init(void){
+void _TIM2_interrupt_GPIO_init(void (*function)(void)){
 
     /*********************/
     /** Configure GPIOB **/
@@ -16,6 +16,9 @@ void _TIM2_interrupt_GPIO_init(void){
     GPIOB->GPIOx_MODER &= ~(3 << (3 * 2));
     GPIOB->GPIOx_MODER |=  (1 << (3 * 2));
     GPIOB->GPIOx_ODR |= (1 << 3);
+
+    /** Configure interrupt handler sequence **/
+    task.interrupt_handler = function;
 }
 
 void _TIM2_interrupt_configuration(uint32_t toggle_freq){

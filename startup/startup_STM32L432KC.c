@@ -214,7 +214,7 @@ void Default_handler(void){
 
 void Reset_handler(void){
     /** 1. Copy Data from Flash to SRAM **/
-    uint32_t *pSrc = (uint32_t *)(&_estack);
+    uint32_t *pSrc = (uint32_t *)(&_etext);
     uint32_t *pDst = (uint32_t *)(&_sdata);
     uint32_t size = (uint32_t)(&_edata) - (uint32_t)(&_sdata);
     

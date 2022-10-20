@@ -14,38 +14,39 @@ GPIOx_t     *   const GPIOC         = (GPIOx_t      *)  0x48000800;
 GPTIMx_t    *   const TIM2          = (GPTIMx_t     *)  0x40000000;
 BTIMx_t     *   const TIM6           = (BTIMx_t      *)  0x40001000;
 
-typedef struct task_t{
-    uint32_t period;
-    void (*fn)(void);
-}task_t;
+task_t task;
 
-task_t *task;
+
+
+void wait(int time){
+    for(int i = 0; i < time; i++){
+        for(int j = 0; j < 1600; j++);
+    }
+}
 
 void blink(void){
     
     /** Reset CC Flags and Overflow Flag **/
     TIM2->TIMx_SR = 0;
-    /** Toggle PA4 LED **/
+
     GPIOB->GPIOx_ODR ^= (1 << 3);
 }
 
 
 void TIM2_handler(void){
-    blink();
-    //task->fn();
+
+    task.interrupt_handler();
 }
 
 int main(void){
 
     /** Configure TIM2 Interrupt and toggle led depending on desired FRQ **/
-    _TIM2_interrupt_GPIO_init();
-    _TIM2_interrupt_configuration(13);
+    _TIM2_interrupt_GPIO_init(blink);
+    _TIM2_interrupt_configuration(10);
 
     /** Configure TIM6 Polling function and blink led depending on desired FRQ **/
     _TIM6_GPIO_init();
-    _TIM6_halting_configuration(3);
-
-    task->fn = (void *)blink;
+    _TIM6_halting_configuration(40);
 
     for(;;);
 }

@@ -118,6 +118,11 @@ typedef struct NVIC_t{
     volatile uint32_t STIR[8];
 }NVIC_t;
 
+
+typedef struct task_t{
+    void (*interrupt_handler)(void);
+}task_t;
+
 extern NVIC_t      *   const NVIC;
 extern RCC_t       *   const RCC;
 extern GPIOx_t     *   const GPIOA;
@@ -125,5 +130,6 @@ extern GPIOx_t     *   const GPIOB;
 extern GPIOx_t     *   const GPIOC;
 extern GPTIMx_t    *   const TIM2; 
 extern BTIMx_t     *   const TIM6;
+extern task_t task;
 
 #endif
