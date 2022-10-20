@@ -3,6 +3,9 @@
 #include "peripherals.h"
 #include "tim.h"
 
+
+void blink(void);
+
 NVIC_t      *   const NVIC          = (NVIC_t       *)  0xE000E100;
 RCC_t       *   const RCC           = (RCC_t        *)  0x40021000;
 GPIOx_t     *   const GPIOA         = (GPIOx_t      *)  0x48000000;
@@ -11,13 +14,25 @@ GPIOx_t     *   const GPIOC         = (GPIOx_t      *)  0x48000800;
 GPTIMx_t    *   const TIM2          = (GPTIMx_t     *)  0x40000000;
 BTIMx_t     *   const TIM6           = (BTIMx_t      *)  0x40001000;
 
+typedef struct task_t{
+    uint32_t period;
+    void (*fn)(void);
+}task_t;
 
-void TIM2_handler(void){
+task_t *task;
 
+void blink(void){
+    
     /** Reset CC Flags and Overflow Flag **/
     TIM2->TIMx_SR = 0;
     /** Toggle PA4 LED **/
     GPIOB->GPIOx_ODR ^= (1 << 3);
+}
+
+
+void TIM2_handler(void){
+    blink();
+    //task->fn();
 }
 
 int main(void){
@@ -29,6 +44,8 @@ int main(void){
     /** Configure TIM6 Polling function and blink led depending on desired FRQ **/
     _TIM6_GPIO_init();
     _TIM6_halting_configuration(3);
+
+    task->fn = (void *)blink;
 
     for(;;);
 }
